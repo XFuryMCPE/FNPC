@@ -85,7 +85,7 @@ class NPC extends \pocketmine\level\Location
 				NPC::$packet_hash=spl_object_hash($packet);
 				foreach(NPC::$pool as $npc)
 				{
-					if($packet->target==$npc->getEID())
+					if($packet->target==$npc->getEID() && $packet->action = 2 /*Left Click, Tap for non-Win10*/)
 					{
 						if($npc->needPay() && !$npc->checkPay($player,true,$player))
 						{
