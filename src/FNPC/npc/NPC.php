@@ -85,7 +85,7 @@ class NPC extends \pocketmine\level\Location
 				NPC::$packet_hash=spl_object_hash($packet);
 				foreach(NPC::$pool as $npc)
 				{
-					if($packet->target==$npc->getEID())
+					if($packet->target==$npc->getEID() && $packet->action == 2 /*Left Click, Tap for non-Win10*/)
 					{
 						if($npc->needPay() && !$npc->checkPay($player,true,$player))
 						{
@@ -488,7 +488,7 @@ class NPC extends \pocketmine\level\Location
 		$flags |= 1 << Entity::DATA_FLAG_CAN_SHOW_NAMETAG;
 		$flags |= 1 << Entity::DATA_FLAG_ALWAYS_SHOW_NAMETAG;
 		$pk->metadata=array(
-			Entity::DATA_FLAGS=>[Entity::DATA_TYPE_BYTE,$flags],
+			Entity::DATA_FLAGS=>[Entity::DATA_TYPE_LONG,$flags],
 			Entity::DATA_NAMETAG=>[Entity::DATA_TYPE_STRING,$this->nametag],
 			Entity::DATA_LEAD_HOLDER_EID => [Entity::DATA_TYPE_LONG, -1]
 		);
